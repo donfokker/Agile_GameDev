@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq5243k3tex57"]
+
+[ext_resource type="PackedScene" uid="uid://bytm26lr7c02i" path="res://scene/world/ground.tscn" id="1_vb3x7"]
+[ext_resource type="PackedScene" uid="uid://dggsbv7ya0b6a" path="res://scene/world/obstacle.tscn" id="2_nsbum"]
+[ext_resource type="PackedScene" uid="uid://c1no71hyxoa1b" path="res://scene/player/playerModel.tscn" id="3_ts1gk"]
+[ext_resource type="PackedScene" uid="uid://bhh77cmvqni6f" path="res://scene/world/light.tscn" id="4_mv1tt"]
+
+[node name="World" type="Node3D"]
+
+[node name="Ground" parent="." instance=ExtResource("1_vb3x7")]
+transform = Transform3D(50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, -0.6, 0)
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="Obstacle" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(1, 0, 0, 0, 5, 0, 0, 0, 1, -4.14217, 2.03759, -4.20686)
+
+[node name="Obstacle2" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(4.13047, 0, -3.0578, 0, 1.03535, 0, 4.77845, 0, 2.64315, 13.0417, -0.387738, -7.79408)
+
+[node name="Obstacle3" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(2.82843, 0, -0.707107, 0, 4, 0, 2.82843, 0, 0.707107, -3.07478, 1.5, 8.59508)
+
+[node name="Obstacle4" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(6.98342, 0.891574, 0, -2.42055, 2.57224, 0, 0, 0, 3.76505, -1.55015, 7.66627, -10.9222)
+
+[node name="Obstacle5" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(2.74652, 0, 0, 0, 7.44956, 0, 0, 0, 3.76505, 0.193, 3.2, -10.922)
+
+[node name="Obstacle6" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(6.56782, 6.45498, 1.33841, -0.0792764, 7.92616, -3.3785, -4.56699, 9.14537, 1.98342, 9.51425, 1.65373, 9.32714)
+
+[node name="Obstacle7" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(15.7987, 0, -1.37845, 0, 1.24546, 0, 4.21907, 0, 5.16173, 15.5269, 10.1832, -17.7122)
+
+[node name="Obstacle8" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(-4.12268, 3.36852, -3.39913, -3.40103, 10.405, 2.04412, 5.95286, 8.27754, -1.18622, -12.8563, 2.09774, 9.32714)
+
+[node name="Obstacle9" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(-4.69704, -0.599672, 2.78616, -4.82913, 1.8079, -1.36835, -3.04047, -1.94506, -2.13085, -15.259, 4.82965, -11.586)
+
+[node name="Obstacle10" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(-1.84731, 0, 2.78616, -1.09822, 6.26839, -1.36835, -1.71019, -4.02532, -2.13085, -16.4313, 0.374448, -10.2582)
+
+[node name="Player" parent="." instance=ExtResource("3_ts1gk")]
+
+[node name="DirectionalLight3D" parent="." instance=ExtResource("4_mv1tt")]
+transform = Transform3D(0.707107, 0.541675, -0.45452, 0, 0.642788, 0.766044, 0.707107, -0.541675, 0.45452, 0, 4.44921, 0)
