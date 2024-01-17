@@ -1,35 +1,29 @@
-extends Node3D
+extends CharacterBody3D
 
-var speed = 7;
-var acceleration= 20;
-var gravity = 9.8;
-var jump = 5;
+const SPEED = 5;
+const jump_VELOCITY = 4.5;
 
-var mouse_sensitivity = 0.05;
+#get input from the project settings to be synced with the RigidBody nodes
+#var gravity = ProjectSettings.get_setting("physic/3d/default.gravity")
+var gravity = 9;
 
-var direction = Vector3();
-var velocity = Vector3();
-var fall = Vector3();
-
-@onready var head = $Head;
-
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sensitivity));
-		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sensitivity));
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90));
-
-#updates the game every frame
-func _process(delta):
+func _physics_process(delta):
+	#Add the gravity
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+		
+	#Handle jump
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_VELOCITY
 	
-	#Pressing "esc" stops your cursor from locking in the screen
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
+	#Get the input direction and handle the movement/deceleration
+	var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.z, 0, SPEED)
 	
-	#WASD Controlls for the player
-	if Input.is_action_pressed("move_forward"):
-		direction -= transform.basis.z
-	
+	move_and_slide()
