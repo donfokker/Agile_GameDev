@@ -42,6 +42,13 @@ transform = Transform3D(-4.69704, -0.599672, 2.78616, -4.82913, 1.8079, -1.36835
 [node name="Obstacle10" parent="Obstacles" instance=ExtResource("2_nsbum")]
 transform = Transform3D(-1.84731, 0, 2.78616, -1.09822, 6.26839, -1.36835, -1.71019, -4.02532, -2.13085, -16.4313, 0.374448, -10.2582)
 
+[node name="Obstacle11" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(4.13047, 0, -3.0578, 0, 1.03535, 0, 4.77845, 0, 2.64315, 15.6588, 0.989573, -9.91563)
+
+[node name="Obstacle12" parent="Obstacles" instance=ExtResource("2_nsbum")]
+transform = Transform3D(5.44479, 0, 2.04859, 0, 1.03535, 0, -3.20134, 0, 3.4842, 17.4991, 2.10152, -6.07714)
+metadata/_edit_group_ = true
+
 [node name="Player" parent="." instance=ExtResource("3_ts1gk")]
 
 [node name="DirectionalLight3D" parent="." instance=ExtResource("4_mv1tt")]
