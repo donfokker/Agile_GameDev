@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 5;
+const Default_Move_Speed = 5;
 const jump_VELOCITY = 8;
 
 var mouse_sens = 0.05;
@@ -15,8 +15,8 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		rotate_y(deg_to_rad(-event.relative.y * mouse_sens))
-		head.rotate_x(deg_to_rad(-event.relative.x * mouse_sens))
+		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
+		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _physics_process(delta):
@@ -32,10 +32,12 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * Default_Move_Speed
+		velocity.z = direction.z * Default_Move_Speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+		velocity.x = move_toward(velocity.x, 0, Default_Move_Speed)
+		velocity.z = move_toward(velocity.z, 0, Default_Move_Speed)
 	move_and_slide()
+	
+	#Death screen upon touching floor
+	
